@@ -1,1 +1,114 @@
-My GitHub Page
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D3 Intro</title>
+    <link rel="stylesheet" type="text/css" href="deck.css">
+    <script src="lib/d3.min.js"></script>
+    <script src="slide_maker.js"></script>
+    <script>
+      var title;
+
+      function rect1(parent) {
+        window.svg = d3.select(parent)
+          .append('svg');
+
+        svg
+          .append('rect')
+          .attr('x', function() { return Math.random()*300 + 20; })
+          .attr('y', 100)
+          .attr('width', 60)
+          .attr('height', 300);
+      }
+
+      function rect3(parent) {
+        window.svg = d3.select(parent)
+          .append('svg');
+
+        svg.selectAll('rect').data(new Array(3))
+          .enter().append('rect')
+          .attr('x', function() { return Math.random()*300 + 20; })
+          .attr('y', function() { return Math.random()*300 + 20; })
+          .attr('width', function() { return Math.random()*100 + 20; })
+          .attr('height', function() { return Math.random()*100 + 20; });
+      }
+    </script>
+  </head>
+  <body>
+
+    <section class="main_title">
+      <h1>D3</h1>
+      <h2>Data Driven Documents</h2>
+      <div class="name">Vadim Ogievetsky</div>
+      <div class="date">2012-02-14</div>
+    </section>
+
+    <script>
+    // -------------------------------------------------
+    slide.code_title(title = '.select()');
+
+    slide.code(title, rect1, function() {
+      // svg = d3.select('svg.that_svg_to_the_right')
+      var myRect = svg.select('rect')
+      myRect.attr('width', 100)
+      myRect.attr('height', 100)
+      myRect.style('fill', 'steelblue')
+    });
+
+    slide.code(title, rect1, function() {
+      // svg = d3.select('svg.that_svg_to_the_right')
+      svg.select('rect')
+        .attr('width', 100)
+        .attr('height', 100)
+        .style('fill', 'steelblue')
+    });
+
+
+    // -------------------------------------------------
+    slide.code_title(title = '.selectAll()');
+
+    slide.code(title, rect3, function() {
+      svg.select('rect')
+        .attr('width', 100)
+        .attr('height', 100)
+        .style('fill', 'steelblue')
+    });
+
+    slide.code(title, rect3, function() {
+      svg.selectAll('rect')
+        .attr('width', 100)
+        .attr('height', 100)
+        .style('fill', 'steelblue')
+    });
+
+    slide.code(title, rect3, function() {
+      svg.selectAll('rect')
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return i * 150 + 100; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+    });
+
+
+    // -------------------------------------------------
+    slide.code_title(title = '.data()');
+
+    slide.code(title, rect3, function() {
+      svg.selectAll('rect')
+        .data([64, 128, 256])
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+    });
+
+    </script>
+
+    <section class="title">
+      <h1>Questions?</h1>
+    </section>
+
+  </body>
+  <script type="text/javascript" src="deck.js"></script>
+</html>

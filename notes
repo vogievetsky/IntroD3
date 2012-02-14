@@ -1,0 +1,73 @@
+d3.select()
+---
+// one gray rect
+var svg = d3.select('svg')
+var myRect = svg.select('rect')
+myRect.attr('width', 40)
+myRect.attr('height', 40)
+myRect.style('fill', 'steelblue')
+---
+// one gray rect
+d3.select('rect')
+  .attr('width', 40)
+  .attr('height', 40)
+  .style('fill', 'steelblue')
+---
+d3.selectAll()
+---
+// three gray rects
+d3.selectAll('rect')
+  .attr('x', 0)
+  .attr('width', 40)
+  .attr('height', 40)
+  .style('fill', 'steelblue')
+---
+.data()
+---
+// three gray rects
+d3.selectAll('rect')
+  .data([32, 64, 128])
+---
+// three gray rects
+d3.selectAll('rect')
+  .data([32, 64, 128])
+  .attr('x', 10)
+  .attr('y', function(d,i) { return 30*i; })
+  .attr('width', 40)
+  .attr('height', 40)
+  .style('fill', 'steelblue')
+---
+// three gray rects
+d3.selectAll('rect')
+  .data([32, 64, 128])
+  .attr('x', 10)
+  .attr('y', function(d,i) { return 30*i; })
+  .attr('width', function(d,i) { return d; })
+  .attr('height', 40)
+  .style('fill', 'steelblue')
+---
+.enter()
+---
+// three gray rects
+var sel = d3.selectAll('rect')
+  .data([32, 64, 128, 256])
+---
+// three gray rects
+var selection = d3.selectAll('rect')
+  .data([32, 64, 128, 256])
+
+selection
+  .attr('x', 10)
+  .attr('y', function(d,i) { return 30*i; })
+  .attr('width', function(d,i) { return d; })
+  .attr('height', 40)
+  .style('fill', 'steelblue')
+
+selection.enter()
+
+
+
+
+
+
+
