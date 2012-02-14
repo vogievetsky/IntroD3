@@ -51,16 +51,16 @@ section {
 
   &.code_title {
     h1 {
-      font-family: monospace;
+      font-family: "Courier New", monospace;
       text-align: center;
-      margin-top: 260px;
-      font-size: 110px;
+      margin-top: 310px;
+      font-size: 72px;
     }
   }
 
   &.code_slide {
     h1 {
-      font-family: monospace;
+      font-family: "Courier New", monospace;
       text-align: center;
       margin-top: 22px;
       font-size: 36px;
@@ -74,12 +74,13 @@ section {
       top: 90px;
 
       textarea {
-        font-family: monospace;
+        font-family: "Courier New", monospace;
         width: 100%;
-        height: 600px;
+        height: 100%;
         border: 1px solid #ccc;
         font-size: 14px;
         padding: 4px 6px;
+        resize: none;
 
         &.init {
           display: none;
@@ -87,7 +88,9 @@ section {
       }
 
       div.button_bar {
-        float: right;
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
 
         div.reset,
         div.run {
