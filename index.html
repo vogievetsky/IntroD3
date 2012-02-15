@@ -96,7 +96,7 @@
     slide.code(title, rect3, function() {
       svg.selectAll('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return i * 150 + 100; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -110,7 +110,7 @@
       svg.selectAll('rect')
         .data([64, 128, 256])
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -125,7 +125,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -137,7 +137,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -156,14 +156,14 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue') // this doesn't look out of place
@@ -180,7 +180,7 @@
       // is joined in to the update selection
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -188,10 +188,10 @@
 
     slide.code(title + ' // a common pattern', empty_svg, function() {
       svg.selectAll('rect')
-        .data([64, 128, 256, 71])
+        .data([64, 128, 256])
         .enter().append('rect')
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100; })
+          .attr('y', function(d,i) { return i * 100 + 50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -207,7 +207,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -219,7 +219,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100; })
+        .attr('y', function(d,i) { return i * 100 + 50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -238,7 +238,7 @@
         .transition()
         .duration(3000) // 3 seconds
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100; })
+          .attr('y', function(d,i) { return i * 100 + 50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -259,7 +259,7 @@
         .transition()
         .duration(3000)
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100; })
+          .attr('y', function(d,i) { return i * 100 + 50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -276,13 +276,103 @@
           .attr('opacity', 0)
           .remove();
     });
-    </script>
 
-    <section class="title">
-      <h1>Putting it all together</h1>
-    </section>
+    // -------------------------------------------------
+    slide.code_title(title = '.data(..., join)');
 
-    <script>
+    function init_svg(parent) {
+      empty_svg(parent);
+      svg.selectAll('rect')
+        .data([64, 128, 256])
+        .enter().append('rect')
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
+    }
+
+    slide.code(title, init_svg, function() {
+      // Let's say we start here:
+
+      // svg.selectAll('rect')
+      //   .data([64, 128, 256])
+      //   .enter().append('rect')
+      //     .attr('x', 0)
+      //     .attr('y', function(d,i) { return i * 100 + 50; })
+      //     .attr('width', function(d,i) { return d; })
+      //     .attr('height', 20)
+      //     .style('fill', 'steelblue')
+
+      // And then we do this:
+
+      var selection = svg.selectAll('rect')
+        .data([128, 256, 71]) // <- incomplete?
+
+      selection.enter().append('rect')
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+
+      selection
+        .transition()
+        .duration(3000)
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
+
+      selection.exit()
+        .remove()
+
+      // Note that String(5) === "5"
+    });
+
+    slide.code(title, init_svg, function() {
+      // Let's say we start here:
+
+      // svg.selectAll('rect')
+      //   .data([64, 128, 256])
+      //   .enter().append('rect')
+      //     .attr('x', 0)
+      //     .attr('y', function(d,i) { return i * 100 + 50; })
+      //     .attr('width', function(d,i) { return d; })
+      //     .attr('height', 20)
+      //     .style('fill', 'steelblue')
+
+      // And then we do this:
+
+      var selection = svg.selectAll('rect')
+        .data([128, 256, 71], String)
+
+      selection.enter().append('rect')
+        .attr('x', 0)
+        .attr('y', function(d,i) { return (i+1) * 100 + 50; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+        .style('opacity', 0)
+
+
+      selection
+        .transition()
+        .duration(3000)
+          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('height', 20)
+          .style('opacity', 1)
+
+      selection.exit()
+        .transition()
+        .duration(3000)
+          .attr('y', function(d,i) { return (i-1) * 100 + 50; })
+          .style('opacity', 0)
+          .remove()
+
+      // Note that String(5) === "5"
+    });
 
     slide.code('d3', empty_svg, function() {
       // fill me
@@ -300,7 +390,7 @@
 
     <section class="image2">
       <h1>Where to learn more about SVG?</h1>
-      FILL ME
+      Fill me with SVG book slide and inspect screeenshot
     </section>
 
     <section class="title">

@@ -11,8 +11,10 @@
       .split('\n');
 
     // remove common pre-space
-    var minSpace = d3.min(lines.map(function(line) { return line.match(/^\s*/)[0].length; }));
-    if (minSpace) {
+    var minSpace = d3.min(lines.map(function(line) {
+      return line ? line.match(/^\s*/)[0].length : Infinity;
+    }));
+    if (minSpace && isFinite(minSpace)) {
       lines = lines.map(function(line) { return line.substr(minSpace); })
     }
 
