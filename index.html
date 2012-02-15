@@ -96,7 +96,7 @@
     slide.code(title, rect3, function() {
       svg.selectAll('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return i * 150 + 100; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -110,7 +110,7 @@
       svg.selectAll('rect')
         .data([64, 128, 256])
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -125,7 +125,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -137,7 +137,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -156,14 +156,14 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue') // this doesn't look out of place
@@ -180,7 +180,7 @@
       // is joined in to the update selection
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -191,7 +191,7 @@
         .data([64, 128, 256])
         .enter().append('rect')
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -207,7 +207,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -219,7 +219,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -238,7 +238,7 @@
         .transition()
         .duration(3000) // 3 seconds
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -259,7 +259,7 @@
         .transition()
         .duration(3000)
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -286,7 +286,7 @@
         .data([64, 128, 256])
         .enter().append('rect')
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -299,7 +299,7 @@
       //   .data([64, 128, 256])
       //   .enter().append('rect')
       //     .attr('x', 0)
-      //     .attr('y', function(d,i) { return i * 100 + 50; })
+      //     .attr('y', function(d,i) { return i*100+50; })
       //     .attr('width', function(d,i) { return d; })
       //     .attr('height', 20)
       //     .style('fill', 'steelblue')
@@ -311,7 +311,7 @@
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i * 100 + 50; })
+        .attr('y', function(d,i) { return i*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -320,7 +320,7 @@
         .transition()
         .duration(3000)
           .attr('x', 0)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -338,7 +338,7 @@
       //   .data([64, 128, 256])
       //   .enter().append('rect')
       //     .attr('x', 0)
-      //     .attr('y', function(d,i) { return i * 100 + 50; })
+      //     .attr('y', function(d,i) { return i*100+50; })
       //     .attr('width', function(d,i) { return d; })
       //     .attr('height', 20)
       //     .style('fill', 'steelblue')
@@ -350,7 +350,7 @@
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return (i+1) * 100 + 50; })
+        .attr('y', function(d,i) { return (i+1)*100+50; })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -360,18 +360,16 @@
       selection
         .transition()
         .duration(3000)
-          .attr('y', function(d,i) { return i * 100 + 50; })
+          .attr('y', function(d,i) { return i*100+50; })
           .attr('height', 20)
           .style('opacity', 1)
 
       selection.exit()
         .transition()
         .duration(3000)
-          .attr('y', function(d,i) { return (i-1) * 100 + 50; })
+          .attr('y', function(d,i) { return (i-1)*100+50; })
           .style('opacity', 0)
           .remove()
-
-      // Note that String(5) === "5"
     });
 
     slide.code('d3', empty_svg, function() {
