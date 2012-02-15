@@ -20,7 +20,7 @@
   }
 
   slide.code = function(title, init, code) {
-    var out;
+    var out, codeText;
 
     function myInit() {
       out.selectAll('*').remove();
@@ -39,10 +39,16 @@
       .attr('class', 'codes')
 
     function run() {
-      eval(codeText.property('value'))
+      var code = codeText.property('value');
+      code = '(function() {\n' + code + '\n})()';
+      try {
+        eval(code);
+      } catch(err) {
+        throw err; // ToDo
+      }
     }
 
-    var codeText = codes.append('textarea')
+    codeText = codes.append('textarea')
       .attr('class', 'code')
       .property('value', fn_to_string(code))
       .on('keydown', function() {

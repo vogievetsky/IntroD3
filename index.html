@@ -245,23 +245,63 @@
     });
 
     slide.code(title, rect3, function() {
-      // TO DO: enter / exit / transition / multiple
-    });
+      var selection = svg.selectAll('rect')
+        .data([64, 128, 256, 71])
 
-    // Putting it all together
+      selection.enter().append('rect')
+        .attr('x', 200)
+        .attr('y', 200)
+        .attr('width', 10)
+        .attr('height', 10)
+        .style('fill', 'red')
+
+      selection
+        .transition()
+        .duration(3000)
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i * 100; })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
+          .transition()
+          .duration(3000)
+          .delay(3000)
+            .attr('width', function(d,i) { return d*1.5; })
+            .style('fill', 'green')
+
+      selection.exit()
+        .attr('opacity', 1)
+        .transition()
+        .duration(3000)
+          .attr('opacity', 0)
+          .remove();
+    });
+    </script>
+
+    <section class="title">
+      <h1>Putting it all together</h1>
+    </section>
+
+    <script>
+
+    slide.code('d3', empty_svg, function() {
+      // fill me
+    });
 
     // A more complex example
 
-    // Learn more about svg slide
-
     /*
     ToDo:
-    - unrandomize init functions
-    - style questions slide / add MMX logo
+    - add MMX logo
     - add the link to GH
     */
 
     </script>
+
+    <section class="image2">
+      <h1>Where to learn more about SVG?</h1>
+      FILL ME
+    </section>
 
     <section class="title">
       <h1>Questions?</h1>
