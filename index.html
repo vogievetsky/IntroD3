@@ -17,7 +17,7 @@
 
         svg
           .append('rect')
-          .attr('x', function() { return Math.random()*300 + 20; })
+          .attr('x', 150)
           .attr('y', 100)
           .attr('width', 60)
           .attr('height', 300);
@@ -26,12 +26,23 @@
       function rect3(parent) {
         empty_svg(parent);
 
-        svg.selectAll('rect').data(new Array(3))
-          .enter().append('rect')
-          .attr('x', function() { return Math.random()*300 + 20; })
-          .attr('y', function() { return Math.random()*300 + 20; })
-          .attr('width', function() { return Math.random()*100 + 20; })
-          .attr('height', function() { return Math.random()*100 + 20; });
+        svg.append('rect')
+          .attr('x', 200)
+          .attr('y', 300)
+          .attr('width', 40)
+          .attr('height', 50);
+
+        svg.append('rect')
+          .attr('x', 100)
+          .attr('y', 20)
+          .attr('width', 30)
+          .attr('height', 50);
+
+        svg.append('rect')
+          .attr('x', 10)
+          .attr('y', 200)
+          .attr('width', 25)
+          .attr('height', 90);
       }
     </script>
   </head>
@@ -175,7 +186,7 @@
         .style('fill', 'steelblue')
     });
 
-    slide.code(title + ' [a common pattern]', empty_svg, function() {
+    slide.code(title + ' // a common pattern', empty_svg, function() {
       svg.selectAll('rect')
         .data([64, 128, 256, 71])
         .enter().append('rect')
@@ -222,7 +233,15 @@
     slide.code_title(title = '.transition()');
 
     slide.code(title, rect3, function() {
-      // TO DO: basic transition
+      svg.selectAll('rect')
+        .data([64, 128, 256])
+        .transition()
+        .duration(3000) // 3 seconds
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i * 100; })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
     });
 
     slide.code(title, rect3, function() {
