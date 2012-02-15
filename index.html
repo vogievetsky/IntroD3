@@ -8,9 +8,12 @@
     <script>
       var title;
 
+      function empty_svg(parent) {
+        window.svg = d3.select(parent).append('svg');
+      }
+
       function rect1(parent) {
-        window.svg = d3.select(parent)
-          .append('svg');
+        empty_svg(parent);
 
         svg
           .append('rect')
@@ -21,8 +24,7 @@
       }
 
       function rect3(parent) {
-        window.svg = d3.select(parent)
-          .append('svg');
+        empty_svg(parent);
 
         svg.selectAll('rect').data(new Array(3))
           .enter().append('rect')
@@ -101,6 +103,118 @@
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
+    });
+
+    // -------------------------------------------------
+    slide.code_title(title = '.enter()');
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128, 256, 71])
+
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+    });
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128, 256, 71])
+
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+
+      selection.enter().append('rect')
+        .attr('x', 10) // let's just put it somewhere
+        .attr('y', 10)
+        .attr('width', 30)
+        .attr('height', 30)
+        .style('fill', 'green')
+    });
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128, 256, 71])
+
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+
+      selection.enter().append('rect')
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue') // this doesn't look out of place
+    });
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128, 256, 71])
+
+      // Shorter
+      selection.enter().append('rect')
+
+      // when updating the regular selection then enter selection
+      // is joined in to the update selection
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+    });
+
+    slide.code(title + ' [a common pattern]', empty_svg, function() {
+      svg.selectAll('rect')
+        .data([64, 128, 256, 71])
+        .enter().append('rect')
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i * 100; })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
+    });
+
+
+    // -------------------------------------------------
+    slide.code_title(title = '.exit()');
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128])
+
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+    });
+
+    slide.code(title, rect3, function() {
+      var selection = svg.selectAll('rect')
+        .data([64, 128])
+
+      selection
+        .attr('x', 0)
+        .attr('y', function(d,i) { return i * 100; })
+        .attr('width', function(d,i) { return d; })
+        .attr('height', 20)
+        .style('fill', 'steelblue')
+
+      selection.exit()
+        .remove()
     });
 
     </script>
