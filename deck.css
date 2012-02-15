@@ -8,8 +8,9 @@ section.code_slide h1{font-family:"Courier New",monospace;margin-top:22px;font-s
 section.code_slide div.codes{position:absolute;left:10px;bottom:10px;right:522px;top:90px;}section.code_slide div.codes textarea{font-family:"Courier New",monospace;text-align:left;width:100%;height:100%;border:1px solid #ccc;font-size:14px;padding:4px 6px;resize:none;}section.code_slide div.codes textarea.init{display:none;}
 section.code_slide div.codes div.button_bar{position:absolute;right:4px;bottom:4px;}section.code_slide div.codes div.button_bar div.reset,section.code_slide div.codes div.button_bar div.run{display:inline-block;padding:5px;margin:3px;background:#ccc;cursor:pointer;}
 section.code_slide div.svg_out{position:absolute;right:10px;bottom:10px;left:522px;top:90px;border:1px solid #ccc;}
-section .name{position:absolute;left:20px;bottom:20px;color:#ccc;}
-section .date{position:absolute;right:20px;bottom:20px;color:#ccc;}
+section .name,section .date{position:absolute;bottom:20px;color:#999;}
+section .name{left:20px;}
+section .date{right:20px;}
 section svg{width:100%;height:100%;}section svg rect{fill:#ccc;stroke:gray;stroke-width:2px;}
 section a{color:steelblue;}
 section a:not(:hover){text-decoration:none;}
