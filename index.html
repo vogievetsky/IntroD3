@@ -398,8 +398,78 @@
           .remove()
     });
 
-    slide.code('d3', empty_svg, function() {
-      // fill me
+    // -----------------------------------------------
+    // U+2665 (&hearts;)  ♦ U+2666 (&diams;)  ♣ U+2663 (&clubs;)  ♠ U+2660 (&spades;)
+
+    slide.title('Educational Examples');
+
+    slide.code('Shuffle', empty_svg, function() {
+      window.data = window.data || (function() {
+          var ret = [];
+          for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 4; j++) {
+              ret.push(
+                'JKQA'[i] +
+                '\u2665\u2666\u2663\u2660'[j]);
+            }
+          }
+          return ret;
+        })();
+
+      data.sort(function() { return Math.random()-.5})
+
+      var selection = svg.selectAll('text')
+        .data(data, String)
+
+      selection
+        .transition()
+        .duration(1000)
+          .attr('y', function(d,i) { return i*28+20 })
+
+      selection.enter().append('text')
+        .attr('x', 30)
+        .attr('y', function(d,i) { return i*28+20 })
+        .style('fill', function(d) {
+            return '\u2665\u2666'.indexOf(d[1]) < 0 ?
+              'black' : 'red';
+          })
+        .text(String)
+    });
+
+    slide.code('Shuffle (v2)', empty_svg, function() {
+      window.data = window.data || (function() {
+          var ret = [];
+          for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < 4; j++) {
+              ret.push(
+                'JKQA'[i] +
+                '\u2665\u2666\u2663\u2660'[j]);
+            }
+          }
+          return ret;
+        })();
+
+      data.sort(function() { return Math.random()-.5})
+
+      var selection = svg.selectAll('text')
+        .data(data, String)
+
+      selection
+        .transition().duration(500)
+        .attr('x', function(d,i) {return (i%8)*30+30})
+        .transition().duration(500).delay(500)
+        .attr('y', function(d,i) { return i*28+20 })
+        .transition().duration(500).delay(1000)
+        .attr('x', 30)
+
+      selection.enter().append('text')
+        .attr('x', 30)
+        .attr('y', function(d,i) { return i*28+20 })
+        .style('fill', function(d) {
+            return '\u2665\u2666'.indexOf(d[1]) < 0 ?
+              'black' : 'red';
+          })
+        .text(String)
     });
 
     // A more complex example
