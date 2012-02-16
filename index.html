@@ -399,8 +399,6 @@
     });
 
     // -----------------------------------------------
-    // U+2665 (&hearts;)  ♦ U+2666 (&diams;)  ♣ U+2663 (&clubs;)  ♠ U+2660 (&spades;)
-
     slide.title('Educational Examples');
 
     slide.code('Shuffle', empty_svg, function() {
@@ -480,8 +478,55 @@
         .text(String)
     });
 
+    // -----------------------------------------------
+    slide.code('Drawing lines', empty_svg, function() {
+      svg.append('path')
+        .style('fill', 'none')
+        .style('stroke', 'black')
+        .style('stroke-width', 2)
+        .attr('d', 'M 10 10 L 200 200 '+
+                   'L 200 400 L 300 100 L 400 150')
+    });
 
-    // A more complex example
+    slide.code('Drawing lines', empty_svg, function() {
+      var points = [
+        { x: 10,  y: 10  },
+        { x: 200, y: 200 },
+        { x: 200, y: 400 },
+        { x: 300, y: 100 },
+        { x: 400, y: 150 }
+      ]
+
+      var lineFn = d3.svg.line()
+        .x(function(d) { return d.x })
+        .y(function(d) { return d.y })
+
+      svg.append('path').data([points])
+        .style('fill', 'none')
+        .style('stroke', 'black')
+        .style('stroke-width', 2)
+        .attr('d', lineFn)
+    });
+
+    slide.code('Drawing lines', empty_svg, function() {
+      var points = [
+        { x: 10,  y: 10  },
+        { x: 200, y: 200 },
+        { x: 200, y: 400 },
+        { x: 300, y: 100 },
+        { x: 400, y: 150 }
+      ]
+
+      var lineFn = d3.svg.line()
+        .x(function(d) { return d.x })
+        .y(function(d) { return d.y })
+
+      svg.append('path').data([points])
+        .style('fill', 'none')
+        .style('stroke', 'black')
+        .style('stroke-width', 2)
+        .attr('d', lineFn)
+    });
 
     /*
     ToDo:
