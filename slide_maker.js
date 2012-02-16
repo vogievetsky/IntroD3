@@ -22,7 +22,7 @@
   }
 
   slide.code = function(title, init, code) {
-    var out, codeText, errorCont;
+    var out, codeText;
 
     function myInit() {
       out.selectAll('*').remove();
@@ -40,9 +40,23 @@
     var codes = section.append('div')
       .attr('class', 'codes')
 
+    function myConsoleLog() {
+      var str = Array.prototype.slice.call(arguments).join(' ') + '\n';
+      var pre = out.select('pre.log');
+      if (pre.empty()) {
+        out.append('pre')
+          .attr('class', 'log')
+          .text(str)
+      } else {
+        pre.text(pre.text() + str);
+      }
+    }
+
     function run() {
       var code = codeText.property('value');
-      code = '(function() {\n' + code + '\n})()';
+      code = '(function(console) { \n' + code + '\n})({ log: myConsoleLog })';
+      out.select('div.error').remove();
+      out.select('pre.log').remove();
       try {
         eval(code);
       } catch(err) {
@@ -82,6 +96,14 @@
     d3.select('body')
       .append('section')
       .attr('class', "code_title")
+        .append('h1')
+        .text(title);
+  }
+
+  slide.title = function(title) {
+    d3.select('body')
+      .append('section')
+      .attr('class', "title")
         .append('h1')
         .text(title);
   }

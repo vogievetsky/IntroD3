@@ -56,7 +56,35 @@
     </section>
 
     <script>
-    // -------------------------------------------------
+    slide.title('First some JavaScript')
+
+    slide.code('JavaScript', empty_svg, function() {
+      // In JS functions are first class citizens.
+      // This is a very powerful concept!
+      var squared = function(x) { return x*x };
+      console.log('squared(7) ==', squared(7));
+
+      // D3 has many helper methods
+      // d3.scale.linear() returns a function that
+      // will map the given domain to the given
+      // range linearly.
+      var w = 640, h = 320;
+
+      var x = d3.scale.linear()
+        .domain([-1, 1])
+        .range([0, w]);
+
+      var y = d3.scale.linear()
+        .domain([0, 1])
+        .range([0, h]);
+
+      console.log('x(0) ==', x(0)); // == w/2
+      console.log('y(3) ==', y(3)); // == 3*h
+    });
+
+    slide.title('Core D3')
+
+    // -----------------------------------------------
     slide.code_title(title = '.select()');
 
     slide.code(title, rect1, function() {
@@ -76,7 +104,7 @@
     });
 
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.selectAll()');
 
     slide.code(title, rect3, function() {
@@ -96,27 +124,29 @@
     slide.code(title, rect3, function() {
       svg.selectAll('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
-        .attr('width', function(d,i) { return i * 150 + 100; })
+        .attr('y', function(d,i) { return i*90+50 })
+        .attr('width', function(d,i) {
+            return i*150+100;
+          })
         .attr('height', 20)
         .style('fill', 'steelblue')
     });
 
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.data()');
 
     slide.code(title, rect3, function() {
       svg.selectAll('rect')
         .data([64, 128, 256])
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
     });
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.enter()');
 
     slide.code(title, rect3, function() {
@@ -125,7 +155,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -137,7 +167,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -156,17 +186,17 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
-        .style('fill', 'steelblue') // this doesn't look out of place
+        .style('fill', 'steelblue')
     });
 
     slide.code(title, rect3, function() {
@@ -176,11 +206,12 @@
       // Shorter
       selection.enter().append('rect')
 
-      // when updating the regular selection then enter selection
-      // is joined in to the update selection
+      // when updating the regular selection then
+      // enter selection is joined in to the update
+      // selection for convenience.
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -191,14 +222,14 @@
         .data([64, 128, 256])
         .enter().append('rect')
           .attr('x', 0)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
     });
 
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.exit()');
 
     slide.code(title, rect3, function() {
@@ -207,7 +238,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -219,7 +250,7 @@
 
       selection
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -229,7 +260,7 @@
     });
 
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.transition()');
 
     slide.code(title, rect3, function() {
@@ -238,7 +269,7 @@
         .transition()
         .duration(3000) // 3 seconds
           .attr('x', 0)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -259,15 +290,17 @@
         .transition()
         .duration(3000)
           .attr('x', 0)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
           .transition()
           .duration(3000)
           .delay(3000)
-            .attr('width', function(d,i) { return d*1.5; })
             .style('fill', 'green')
+            .attr('width', function(d,i) {
+                return d*1.5;
+              })
 
       selection.exit()
         .attr('opacity', 1)
@@ -277,7 +310,7 @@
           .remove();
     });
 
-    // -------------------------------------------------
+    // -----------------------------------------------
     slide.code_title(title = '.data(..., join)');
 
     function init_svg(parent) {
@@ -286,7 +319,7 @@
         .data([64, 128, 256])
         .enter().append('rect')
           .attr('x', 0)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -294,16 +327,16 @@
 
     slide.code(title, init_svg, function() {
       // Let's say we start here:
-
-      // svg.selectAll('rect')
-      //   .data([64, 128, 256])
-      //   .enter().append('rect')
-      //     .attr('x', 0)
-      //     .attr('y', function(d,i) { return i*100+50; })
-      //     .attr('width', function(d,i) { return d; })
-      //     .attr('height', 20)
-      //     .style('fill', 'steelblue')
-
+      /*
+      svg.selectAll('rect')
+        .data([64, 128, 256])
+        .enter().append('rect')
+          .attr('x', 0)
+          .attr('y', function(d,i) { return i*90+50 })
+          .attr('width', function(d,i) { return d; })
+          .attr('height', 20)
+          .style('fill', 'steelblue')
+      */
       // And then we do this:
 
       var selection = svg.selectAll('rect')
@@ -311,7 +344,7 @@
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return i*100+50; })
+        .attr('y', function(d,i) { return i*90+50 })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -320,7 +353,7 @@
         .transition()
         .duration(3000)
           .attr('x', 0)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('width', function(d,i) { return d; })
           .attr('height', 20)
           .style('fill', 'steelblue')
@@ -332,25 +365,16 @@
     });
 
     slide.code(title, init_svg, function() {
-      // Let's say we start here:
-
-      // svg.selectAll('rect')
-      //   .data([64, 128, 256])
-      //   .enter().append('rect')
-      //     .attr('x', 0)
-      //     .attr('y', function(d,i) { return i*100+50; })
-      //     .attr('width', function(d,i) { return d; })
-      //     .attr('height', 20)
-      //     .style('fill', 'steelblue')
-
-      // And then we do this:
+      // Start the same as before
 
       var selection = svg.selectAll('rect')
         .data([128, 256, 71], String)
 
       selection.enter().append('rect')
         .attr('x', 0)
-        .attr('y', function(d,i) { return (i+1)*100+50; })
+        .attr('y', function(d,i) {
+            return (i+1)*100+50
+          })
         .attr('width', function(d,i) { return d; })
         .attr('height', 20)
         .style('fill', 'steelblue')
@@ -359,14 +383,16 @@
       selection
         .transition()
         .duration(3000)
-          .attr('y', function(d,i) { return i*100+50; })
+          .attr('y', function(d,i) { return i*90+50 })
           .attr('height', 20)
           .style('opacity', 1)
 
       selection.exit()
         .transition()
         .duration(3000)
-          .attr('y', function(d,i) { return (i-1)*100+50; })
+          .attr('y', function(d,i) {
+              return (i-1)*100+50
+            })
           .style('opacity', 0)
           .remove()
     });
