@@ -22,7 +22,7 @@
   }
 
   slide.code = function(title, init, code) {
-    var out, codeText;
+    var out, codeText, errorCont;
 
     function myInit() {
       out.selectAll('*').remove();
@@ -46,7 +46,9 @@
       try {
         eval(code);
       } catch(err) {
-        throw err; // ToDo
+        out.append('div')
+          .attr('class', 'error')
+          .text('Error: ' + err.message)
       }
     }
 
@@ -63,17 +65,17 @@
       .attr('class', 'button_bar')
 
     buttonBar.append('div')
-      .attr('class', 'run')
+      .attr('class', 'run btn')
       .text('Run')
       .on('click', run)
 
     buttonBar.append('div')
-      .attr('class', 'reset')
+      .attr('class', 'reset btn')
       .text('Reset')
       .on('click', myInit)
 
     out = section.append('div')
-      .attr('class', "svg_out")
+      .attr('class', "out")
   }
 
   slide.code_title = function(title) {
