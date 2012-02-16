@@ -404,7 +404,8 @@
     slide.title('Educational Examples');
 
     slide.code('Shuffle', empty_svg, function() {
-      window.data = window.data || (function() {
+      // Global var accessible in subsequent runs
+      window.cards = window.cards || (function() {
           var ret = [];
           for (var i = 0; i < 4; i++) {
             for (var j = 0; j < 4; j++) {
@@ -416,28 +417,30 @@
           return ret;
         })();
 
-      data.sort(function() { return Math.random()-.5})
+      cards.sort(function() {return Math.random()-.5})
 
       var selection = svg.selectAll('text')
-        .data(data, String)
+        .data(cards, String)
 
       selection
         .transition()
         .duration(1000)
-          .attr('y', function(d,i) { return i*28+20 })
+          .attr('y', function(d,i) { return i*35+40 })
 
       selection.enter().append('text')
         .attr('x', 30)
-        .attr('y', function(d,i) { return i*28+20 })
+        .attr('y', function(d,i) { return i*35+40 })
         .style('fill', function(d) {
             return '\u2665\u2666'.indexOf(d[1]) < 0 ?
               'black' : 'red';
           })
+        .style('font', '20px monospace')
         .text(String)
     });
 
-    slide.code('Shuffle (v2)', empty_svg, function() {
-      window.data = window.data || (function() {
+    function init_cards(parent) {
+      empty_svg(parent);
+      window.cards = window.cards || (function() {
           var ret = [];
           for (var i = 0; i < 4; i++) {
             for (var j = 0; j < 4; j++) {
@@ -448,29 +451,35 @@
           }
           return ret;
         })();
+    }
 
-      data.sort(function() { return Math.random()-.5})
+    slide.code('Shuffle (v2)', init_cards, function() {
+      // window.cards = ... same as before
+
+      cards.sort(function() {return Math.random()-.5})
 
       var selection = svg.selectAll('text')
-        .data(data, String)
+        .data(cards, String)
 
       selection
         .transition().duration(500)
         .attr('x', function(d,i) {return (i%8)*30+30})
         .transition().duration(500).delay(500)
-        .attr('y', function(d,i) { return i*28+20 })
+        .attr('y', function(d,i) { return i*35+40 })
         .transition().duration(500).delay(1000)
         .attr('x', 30)
 
       selection.enter().append('text')
         .attr('x', 30)
-        .attr('y', function(d,i) { return i*28+20 })
+        .attr('y', function(d,i) { return i*35+40 })
         .style('fill', function(d) {
             return '\u2665\u2666'.indexOf(d[1]) < 0 ?
               'black' : 'red';
           })
+        .style('font', '20px monospace')
         .text(String)
     });
+
 
     // A more complex example
 
