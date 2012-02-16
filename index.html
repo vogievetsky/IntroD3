@@ -509,19 +509,28 @@
     });
 
     slide.code('Drawing lines', empty_svg, function() {
-      var points = [
-        { x: 10,  y: 10  },
-        { x: 200, y: 200 },
-        { x: 200, y: 400 },
-        { x: 300, y: 100 },
-        { x: 400, y: 150 }
-      ]
+      var pointsSin = d3.range(20).map(function(i) {
+        return {x: i/19, y: (Math.sin(i/3) + 1) / 2}
+      })
+      var pointsCos = d3.range(20).map(function(i) {
+        return {x: i/19, y: (Math.cos(i/3) + 1) / 2}
+      })
+
+
+      var w = 480
+      var h = 300
+      var x = d3.scale.linear()
+                .domain([0, 1]).range([0, w])
+      var y = d3.scale.linear()
+                .domain([0, 1]).range([h, 0])
 
       var lineFn = d3.svg.line()
-        .x(function(d) { return d.x })
-        .y(function(d) { return d.y })
+        .x(function(d) { return x(d.x); })
+        .y(function(d) { return y(d.y); })
 
-      svg.append('path').data([points])
+      svg.selectAll('path')
+        .data([pointsSin, pointsCos])
+        .enter().append("path")
         .style('fill', 'none')
         .style('stroke', 'black')
         .style('stroke-width', 2)
