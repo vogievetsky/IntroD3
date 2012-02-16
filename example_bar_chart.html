@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to D3</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <script type="text/javascript" src="d3/d3.time.js"></script>
+    <script type="text/javascript" src="data/browsers.js"></script>
+    <style type="text/css">
+      body {
+        padding: 50px;
+      }
+
+      svg {
+        border: 1px solid black;
+      }
+
+      text {
+        font: 11px sans-serif;
+        fill: gray;
+      }
+    </style>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+
+  /* Usefull function */
+  var randomColor = function() {
+    return '#' + (Math.random().toString(16) + '000000').substr(2, 6);
+  }
+
+  /* Convert the string dates to date objects */
+  var dateParse = d3.time.format("%B %Y").parse
+  stats.forEach(function(d) {
+    d.month = dateParse(d.month)
+    if (d.month == null) {
+      throw "bad date" // Make sure we have a proper date (no typos in the file).
+    }
+  });
+  stats = stats.reverse()
+
+  /* Vis */
+  var width = 700
+  var height = 400
+
+  var svg = d3.select('body')
+    .append('svg:svg')
+      .attr('width', width)
+      .attr('height', height)
+
+  var sx = d3.time.scale()
+    .range([10, width])
+
+  var sy = d3.scale.linear()
+    .domain([0, 1])
+    .range([0, height])
+
+  var windowSize = 10
+  var windowPos = 0
+
+  labelFormat = d3.time.format("%b %y")
+
+  var render = function() {
+    var data = stats.slice(windowPos, windowPos+windowSize)
+
+    sx.domain([data[0].month, data[data.length-1].month])
+
+    var selBar = svg.selectAll('rect.bar')
+      .data(data, function(d) { return d.month; })
+
+    selBar.enter().append('svg:rect')
+      .attr('class', 'bar')
+      //.style('fill', randomColor)
+      .style('fill', colors['IE6'])
+      .attr('x', function(d) { return sx(d.month); })
+      .attr('y', function(d) { return height - sy(d.data['IE6'] || 0); })
+      .attr('width', 30)
+      .attr('height', function(d) { return sy(d.data['IE6'] || 0); })
+
+
+    selBar
+      .transition()
+      .duration(800)
+        .attr('x', function(d) { return sx(d.month); })
+
+
+    selBar.exit()
+      .transition()
+      .duration(800)
+        .attr('x', function(d) { return sx(d.month); })
+        .remove()
+
+    // ----------------------------------------
+
+    var selLabel = svg.selectAll('text.label')
+      .data(data, function(d) { return d.month; })
+
+    selLabel.enter().append('svg:text')
+      .attr('class', 'label')
+      .attr('x', function(d) { return sx(d.month); })
+      .attr('y', 20)
+      .text(function(d) { return labelFormat(d.month); })
+
+
+    selLabel
+      .transition()
+      .duration(800)
+        .attr('x', function(d) { return sx(d.month); })
+
+
+    selLabel.exit()
+      .transition()
+      .duration(800)
+        .attr('x', function(d) { return sx(d.month); })
+        .remove()
+  }
+
+  render()
+  var interval = setInterval(function() {
+    windowPos++
+    if (windowPos > stats.length-windowSize) {
+      clearInterval(interval)
+    } else {
+      render()
+    }
+  }, 1000)
+
+  </script>
+</html>
