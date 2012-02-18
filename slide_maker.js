@@ -10,8 +10,6 @@
       .replace(/\s*}\s*$/, '')
       .split('\n');
 
-    lines = lines.map(function(line) { return line.replace(/ *$/, ''); });
-
     // remove common pre-space
     var minSpace = d3.min(lines.map(function(line) {
       return line ? line.match(/^\s*/)[0].length : Infinity;
@@ -20,7 +18,6 @@
       lines = lines.map(function(line) { return line.substr(minSpace); })
     }
 
-    console.log(lines.join('\n'))
     return lines.join('\n');
   }
 
@@ -70,8 +67,7 @@
     }
 
     codeText = codes.append('textarea')
-    .attr('class', 'code')
-      .attr('placeholder', 'JavaScript goes in here...')
+      .attr('class', 'code')
       .property('value', fn_to_string(code))
       .on('keydown', function() {
           // Run if command + enter
