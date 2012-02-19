@@ -1,31 +1,33 @@
-empty_svg = (parent) ->
-  window.svg = d3.select(parent).append("svg")
+empty_svg = ->
+  d3.select('div.output')
+    .append('svg')
 
-rect1 = (parent) ->
-  empty_svg(parent);
+rect1 = ->
+  svg = d3.select('div.output')
+    .append('svg')
 
-  svg
-    .append("rect")
+  svg.append("rect")
     .attr("x", 150)
     .attr("y", 100)
     .attr("width", 60)
     .attr("height", 300)
 
 
-rect3 = (parent) ->
-  empty_svg(parent)
+rect3 = ->
+  svg = d3.select('div.output')
+    .append('svg')
 
   svg.append("rect")
     .attr("x", 200)
     .attr("y", 300)
     .attr("width", 40)
-    .attr("height", 50);
+    .attr("height", 50)
 
   svg.append("rect")
     .attr("x", 100)
     .attr("y", 20)
     .attr("width", 30)
-    .attr("height", 50);
+    .attr("height", 50)
 
   svg.append("rect")
     .attr("x", 10)
@@ -35,11 +37,11 @@ rect3 = (parent) ->
 
 # ----------------------------------------------------
 
-slide.code "JavaScript", empty_svg, """
+slide.code "JavaScript", null, """
 // In JS functions are first class citizens.
 // This is a very powerful concept!
 var squared = function(x) { return x*x };
-console.log("squared(7) ==", squared(7));
+console.log("squared(7) ==", squared(7)
 
 
 // D3 has many helper methods
@@ -56,17 +58,18 @@ var y = d3.scale.linear()
   .domain([0, 1])
   .range([0, h]);
 
-console.log("x(0) ==", x(0)); // == w/2
-console.log("y(3) ==", y(3)); // == 3*h
+console.log("x(0) ==", x(0) // == w/2
+console.log("y(3) ==", y(3) // == 3*h
 """
 
 slide.title "Core D3"
 
 # -----------------------------------------------
-slide.code_title(title = ".select()");
+slide.code_title title = ".select()"
 
 slide.code title, rect1, """
-// svg = d3.select("svg.that_svg_to_the_right")
+var svg = d3.select("div.output svg")
+
 var myRect = svg.select("rect")
 myRect.attr("width", 100)
 myRect.attr("height", 100)
@@ -74,7 +77,8 @@ myRect.style("fill", "steelblue")
 """
 
 slide.code title, rect1, """
-// svg = d3.select("svg.that_svg_to_the_right")
+var svg = d3.select("div.output svg")
+
 svg.select("rect")
   .attr("width", 100)
   .attr("height", 100)
@@ -83,9 +87,11 @@ svg.select("rect")
 
 
 # -----------------------------------------------
-slide.code_title(title = ".selectAll()");
+slide.code_title title = ".selectAll()"
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 svg.select("rect")
   .attr("width", 100)
   .attr("height", 100)
@@ -93,6 +99,8 @@ svg.select("rect")
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 svg.selectAll("rect")
   .attr("width", 100)
   .attr("height", 100)
@@ -100,6 +108,8 @@ svg.selectAll("rect")
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 svg.selectAll("rect")
   .attr("x", 0)
   .attr("y", function(d,i) { return i*90+50 })
@@ -112,9 +122,11 @@ svg.selectAll("rect")
 
 
 # -----------------------------------------------
-slide.code_title(title = ".data()");
+slide.code_title title = ".data()"
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 svg.selectAll("rect")
   .data([64, 128, 256])
   .attr("x", 0)
@@ -125,9 +137,11 @@ svg.selectAll("rect")
 """
 
 # -----------------------------------------------
-slide.code_title(title = ".enter()");
+slide.code_title title = ".enter()"
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128, 256, 71])
 
@@ -140,6 +154,8 @@ selection
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128, 256, 71])
 
@@ -159,6 +175,8 @@ selection.enter().append("rect")
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128, 256, 71])
 
@@ -178,6 +196,8 @@ selection.enter().append("rect")
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128, 256, 71])
 
@@ -197,6 +217,8 @@ selection
 
 title += " // a common pattern"
 slide.code title, empty_svg, """
+var svg = d3.select("div.output svg")
+
 svg.selectAll("rect")
   .data([64, 128, 256])
   .enter().append("rect")
@@ -209,9 +231,11 @@ svg.selectAll("rect")
 
 
 # -----------------------------------------------
-slide.code_title(title = ".exit()");
+slide.code_title title = ".exit()"
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128])
 
@@ -224,6 +248,8 @@ selection
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128])
 
@@ -240,9 +266,11 @@ selection.exit()
 
 
 # -----------------------------------------------
-slide.code_title(title = ".transition()");
+slide.code_title title = ".transition()"
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 svg.selectAll("rect")
   .data([64, 128, 256])
   .transition()
@@ -255,6 +283,8 @@ svg.selectAll("rect")
 """
 
 slide.code title, rect3, """
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("rect")
   .data([64, 128, 256, 71])
 
@@ -286,14 +316,15 @@ selection.exit()
   .transition()
   .duration(3000)
     .attr("opacity", 0)
-    .remove();
+    .remove()
 """
 
 # -----------------------------------------------
-slide.code_title(title = ".data(..., join)");
+slide.code_title title = ".data(..., join)"
 
-init_svg = (parent) ->
-  empty_svg(parent);
+init_svg = ->
+  svg = d3.select("div.output").append("svg")
+
   svg.selectAll("rect")
     .data([64, 128, 256])
     .enter().append("rect")
@@ -304,7 +335,9 @@ init_svg = (parent) ->
       .style("fill", "steelblue")
 
 slide.code title, init_svg, """
-// Let"s say we start here:
+var svg = d3.select("div.output svg")
+
+// Let's say we start here:
 /*
 svg.selectAll("rect")
   .data([64, 128, 256])
@@ -315,8 +348,8 @@ svg.selectAll("rect")
     .attr("height", 20)
     .style("fill", "steelblue")
 */
-// And then we do this:
 
+// And then we do this:
 var selection = svg.selectAll("rect")
   .data([128, 256, 71]) // <- incomplete?
 
@@ -338,12 +371,12 @@ selection
 
 selection.exit()
   .remove()
-
-// Note that String(5) === "5"
 """
 
 slide.code title, init_svg, """
 // Start the same as before
+
+var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
   .data([128, 256, 71], String)
@@ -351,7 +384,7 @@ var selection = svg.selectAll("rect")
 selection.enter().append("rect")
   .attr("x", 0)
   .attr("y", function(d,i) {
-      return (i+1)*100+50
+      return (i+1)*90+50
     })
   .attr("width", function(d,i) { return d; })
   .attr("height", 20)
@@ -369,14 +402,14 @@ selection.exit()
   .transition()
   .duration(3000)
     .attr("y", function(d,i) {
-        return (i-1)*100+50
+        return (i-1)*90+50
       })
     .style("opacity", 0)
     .remove()
 """
 
 # -----------------------------------------------
-slide.title("Educational Examples");
+slide.title "Educational Examples"
 
 slide.code "Shuffle", empty_svg, """
 var cards = [
@@ -386,6 +419,8 @@ var cards = [
   "A\\u2665", "A\\u2666", "A\\u2663", "A\\u2660"]
 
 cards.sort(function() {return Math.random()-.5})
+
+var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("text")
   .data(cards, String)
@@ -415,6 +450,8 @@ var cards = [
 
 cards.sort(function() {return Math.random()-.5})
 
+var svg = d3.select("div.output svg")
+
 var selection = svg.selectAll("text")
   .data(cards, String)
 
@@ -439,6 +476,8 @@ selection.enter().append("text")
 
 # -----------------------------------------------
 slide.code "Drawing lines", empty_svg, """
+var svg = d3.select("div.output svg")
+
 svg.append("path")
   .style("fill", "none")
   .style("stroke", "black")
@@ -459,33 +498,38 @@ var points = [
 var lineFn = d3.svg.line()
   .x(function(d) { return d.x })
   .y(function(d) { return d.y })
+  //.interpolate("cardinal")
 
-svg.append("path").data([points])
+var svg = d3.select("div.output svg")
+
+svg.append("path")
   .style("fill", "none")
   .style("stroke", "black")
   .style("stroke-width", 2)
-  .attr("d", lineFn)
+  .attr("d", lineFn(points))
 """
 
 slide.code "Drawing lines", empty_svg, """
-var pointsSin = d3.range(20).map(function(i) {
-  return {x: i/19, y: (Math.sin(i/3) + 1) / 2}
+var pointsSin = d3.range(21).map(function(i) {
+  return {x: i, y: Math.sin(i/3) }
 })
-var pointsCos = d3.range(20).map(function(i) {
-  return {x: i/19, y: (Math.cos(i/3) + 1) / 2}
+var pointsCos = d3.range(21).map(function(i) {
+  return {x: i, y: Math.cos(i/3) }
 })
 
 
 var w = 480
 var h = 300
 var x = d3.scale.linear()
-          .domain([0, 1]).range([0, w])
+          .domain([0, 20]).range([0, w])
 var y = d3.scale.linear()
-          .domain([0, 1]).range([h, 0])
+          .domain([-1, 1]).range([h, 0])
 
 var lineFn = d3.svg.line()
-  .x(function(d) { return x(d.x); })
-  .y(function(d) { return y(d.y); })
+  .x(function(d) { return x(d.x) })
+  .y(function(d) { return y(d.y) })
+
+var svg = d3.select("div.output svg")
 
 svg.selectAll("path")
   .data([pointsSin, pointsCos])
