@@ -15,6 +15,7 @@
     svg.append("rect").attr("x", 100).attr("y", 20).attr("width", 30).attr("height", 50);
     return svg.append("rect").attr("x", 10).attr("y", 200).attr("width", 25).attr("height", 90);
   };
+  slide.title("First, some JavaScript");
   slide.code("JavaScript", null, "// In JS functions are first class citizens.\n// This is a very powerful concept!\nvar squared = function(x) {\n  return x * x\n}\n\nconsole.log(\"squared(7) ==\", squared(7))\n\n\n// D3 has many helper methods\n// d3.scale.linear() returns a function that\n// will map the given domain to the given\n// range linearly.\nvar w = 640, h = 320\n\nvar x = d3.scale.linear()\n  .domain([-1, 1])\n  .range([0, w])\n\nvar y = d3.scale.linear()\n  .domain([0, 1])\n  .range([0, h])\n\nconsole.log(\"x(0) ==\", x(0)) // == w/2\nconsole.log(\"y(3) ==\", y(3)) // == 3*h");
   slide.title("Core D3");
   slide.code_title(title = ".select()");

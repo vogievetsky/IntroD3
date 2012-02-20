@@ -37,6 +37,8 @@ rect3 = ->
 
 # ----------------------------------------------------
 
+slide.title "First, some JavaScript"
+
 slide.code "JavaScript", null, """
 // In JS functions are first class citizens.
 // This is a very powerful concept!
