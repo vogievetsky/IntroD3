@@ -40,26 +40,29 @@ rect3 = ->
 slide.code "JavaScript", null, """
 // In JS functions are first class citizens.
 // This is a very powerful concept!
-var squared = function(x) { return x*x };
-console.log("squared(7) ==", squared(7)
+var squared = function(x) {
+  return x * x
+}
+
+console.log("squared(7) ==", squared(7))
 
 
 // D3 has many helper methods
 // d3.scale.linear() returns a function that
 // will map the given domain to the given
 // range linearly.
-var w = 640, h = 320;
+var w = 640, h = 320
 
 var x = d3.scale.linear()
   .domain([-1, 1])
-  .range([0, w]);
+  .range([0, w])
 
 var y = d3.scale.linear()
   .domain([0, 1])
-  .range([0, h]);
+  .range([0, h])
 
-console.log("x(0) ==", x(0) // == w/2
-console.log("y(3) ==", y(3) // == 3*h
+console.log("x(0) ==", x(0)) // == w/2
+console.log("y(3) ==", y(3)) // == 3*h
 """
 
 slide.title "Core D3"
