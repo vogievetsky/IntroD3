@@ -133,7 +133,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 svg.selectAll("rect")
-  .data([64, 128, 256])
+  .data([127, 61, 256])
   .attr("x", 0)
   .attr("y", function(d,i) { return i*90+50 })
   .attr("width", function(d,i) { return d; })
@@ -148,7 +148,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128, 256, 71])
+  .data([127, 61, 256, 71])
 
 selection
   .attr("x", 0)
@@ -162,7 +162,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128, 256, 71])
+  .data([127, 61, 256, 71])
 
 selection
   .attr("x", 0)
@@ -183,7 +183,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128, 256, 71])
+  .data([127, 61, 256, 71])
 
 selection
   .attr("x", 0)
@@ -204,7 +204,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128, 256, 71])
+  .data([127, 61, 256, 71])
 
 // Shorter
 selection.enter().append("rect")
@@ -225,7 +225,7 @@ slide.code title, empty_svg, """
 var svg = d3.select("div.output svg")
 
 svg.selectAll("rect")
-  .data([64, 128, 256])
+  .data([127, 61, 256])
   .enter().append("rect")
     .attr("x", 0)
     .attr("y", function(d,i) { return i*90+50 })
@@ -242,7 +242,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128])
+  .data([127, 61])
 
 selection
   .attr("x", 0)
@@ -256,7 +256,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128])
+  .data([127, 61])
 
 selection
   .attr("x", 0)
@@ -277,7 +277,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 svg.selectAll("rect")
-  .data([64, 128, 256])
+  .data([127, 61, 256])
   .transition()
   .duration(3000) // 3 seconds
     .attr("x", 0)
@@ -291,7 +291,7 @@ slide.code title, rect3, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([64, 128, 256, 71])
+  .data([127, 61, 256, 71])
 
 selection.enter().append("rect")
   .attr("x", 200)
@@ -331,7 +331,7 @@ init_svg = ->
   svg = d3.select("div.output").append("svg")
 
   svg.selectAll("rect")
-    .data([64, 128, 256])
+    .data([127, 61, 256])
     .enter().append("rect")
       .attr("x", 0)
       .attr("y", (d,i) -> i*90+50)
@@ -345,7 +345,7 @@ var svg = d3.select("div.output svg")
 // Let's say we start here:
 /*
 svg.selectAll("rect")
-  .data([64, 128, 256])
+  .data([127, 61, 256])
   .enter().append("rect")
     .attr("x", 0)
     .attr("y", function(d,i) { return i*90+50 })
@@ -356,7 +356,7 @@ svg.selectAll("rect")
 
 // And then we do this:
 var selection = svg.selectAll("rect")
-  .data([128, 256, 71]) // <- incomplete?
+  .data([61, 256, 71]) // <- incomplete?
 
 selection.enter().append("rect")
   .attr("x", 0)
@@ -384,7 +384,7 @@ slide.code title, init_svg, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([128, 256, 71], String)
+  .data([61, 256, 71], String)
 
 selection.enter().append("rect")
   .attr("x", 0)
