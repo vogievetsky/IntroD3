@@ -172,7 +172,7 @@ selection
   .style("fill", "steelblue")
 
 selection.enter().append("rect")
-  .attr("x", 10) // let"s just put it somewhere
+  .attr("x", 10) // let's just put it somewhere
   .attr("y", 10)
   .attr("width", 30)
   .attr("height", 30)
