@@ -427,6 +427,38 @@ selection.exit()
 """
 
 # -----------------------------------------------
+slide.title title = "Nested Selections"
+
+slide.code title, empty_svg, """
+var myData = [
+  [15, 20],
+  [40, 10],
+  [30, 17]
+]
+
+var svg = d3.select("div.output svg")
+
+// First selection (within svg)
+
+var selA = svg.selectAll("g").data(myData)
+selA.enter().append("g")
+selA.attr("transform", function(d,i) {
+  return 'translate(70,' + (i*100+50) + ')'
+})
+selA.exit().remove()
+
+// Second selection (within first selection)
+
+var selB = selA.selectAll('circle')
+  .data(function(d) { return d })
+selB.enter().append('circle')
+selB
+  .attr("cx", function(d,i) { return i*80 })
+  .attr("r", function(d,i) { return d })
+selB.exit().remove()
+"""
+
+# -----------------------------------------------
 slide.title "Useful Examples"
 
 slide.code "Shuffle", empty_svg, """
