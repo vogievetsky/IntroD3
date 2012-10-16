@@ -42,23 +42,36 @@ slide.title "First, some JavaScript"
 slide.code "JavaScript", null, """
 // In JS functions are first class citizens.
 // This is a very powerful concept!
-var squared = function(x) {
+function sq1(x) {
   return x * x
 }
 
-console.log("squared(7) ==", squared(7))
+var sq2 = function(x) {
+  return x * x
+}
 
+console.log("sq1(4) ==", sq1(4)) // == 16
+console.log("sq2(4) ==", sq2(4)) // == 16
 
+sq1.foo = 8
+sq2.bar = 3
+
+console.log("Wow dude:", sq1(sq1.foo + sq2.bar))
+"""
+
+slide.code "JavaScript", null, """
 // D3 has many helper methods
 // d3.scale.linear() returns a function that
 // will map the given domain to the given
 // range linearly.
 var w = 640, h = 320
 
+// x is a function!
 var x = d3.scale.linear()
   .domain([-1, 1])
   .range([0, w])
 
+// y is also a function!
 var y = d3.scale.linear()
   .domain([0, 1])
   .range([0, h])
@@ -414,7 +427,7 @@ selection.exit()
 """
 
 # -----------------------------------------------
-slide.title "Educational Examples"
+slide.title "Useful Examples"
 
 slide.code "Shuffle", empty_svg, """
 var cards = [

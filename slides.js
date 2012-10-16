@@ -22,7 +22,9 @@
 
   slide.title("First, some JavaScript");
 
-  slide.code("JavaScript", null, "// In JS functions are first class citizens.\n// This is a very powerful concept!\nvar squared = function(x) {\n  return x * x\n}\n\nconsole.log(\"squared(7) ==\", squared(7))\n\n\n// D3 has many helper methods\n// d3.scale.linear() returns a function that\n// will map the given domain to the given\n// range linearly.\nvar w = 640, h = 320\n\nvar x = d3.scale.linear()\n  .domain([-1, 1])\n  .range([0, w])\n\nvar y = d3.scale.linear()\n  .domain([0, 1])\n  .range([0, h])\n\nconsole.log(\"x(0) ==\", x(0)) // == w/2\nconsole.log(\"y(3) ==\", y(3)) // == 3*h");
+  slide.code("JavaScript", null, "// In JS functions are first class citizens.\n// This is a very powerful concept!\nfunction sq1(x) {\n  return x * x\n}\n\nvar sq2 = function(x) {\n  return x * x\n}\n\nconsole.log(\"sq1(4) ==\", sq1(4)) // == 16\nconsole.log(\"sq2(4) ==\", sq2(4)) // == 16\n\nsq1.foo = 8\nsq2.bar = 3\n\nconsole.log(\"Wow dude:\", sq1(sq1.foo + sq2.bar))");
+
+  slide.code("JavaScript", null, "// D3 has many helper methods\n// d3.scale.linear() returns a function that\n// will map the given domain to the given\n// range linearly.\nvar w = 640, h = 320\n\n// x is a function!\nvar x = d3.scale.linear()\n  .domain([-1, 1])\n  .range([0, w])\n\n// y is also a function!\nvar y = d3.scale.linear()\n  .domain([0, 1])\n  .range([0, h])\n\nconsole.log(\"x(0) ==\", x(0)) // == w/2\nconsole.log(\"y(3) ==\", y(3)) // == 3*h");
 
   slide.title("Core D3");
 
@@ -86,7 +88,7 @@
 
   slide.code(title, init_svg, "// Start the same as before\n\nvar svg = d3.select(\"div.output svg\")\n\nvar selection = svg.selectAll(\"rect\")\n  .data([61, 256, 71], String)\n\nselection.enter().append(\"rect\")\n  .attr(\"x\", 0)\n  .attr(\"y\", function(d,i) {\n      return (i+1)*90+50\n    })\n  .attr(\"width\", function(d,i) { return d; })\n  .attr(\"height\", 20)\n  .style(\"fill\", \"steelblue\")\n  .style(\"opacity\", 0)\n\nselection\n  .transition()\n  .duration(3000)\n    .attr(\"y\", function(d,i) { return i*90+50 })\n    .attr(\"height\", 20)\n    .style(\"opacity\", 1)\n\nselection.exit()\n  .transition()\n  .duration(3000)\n    .attr(\"y\", function(d,i) {\n        return (i-1)*90+50\n      })\n    .style(\"opacity\", 0)\n    .remove()");
 
-  slide.title("Educational Examples");
+  slide.title("Useful Examples");
 
   slide.code("Shuffle", empty_svg, "var cards = [\n  \"J\\u2665\", \"J\\u2666\", \"J\\u2663\", \"J\\u2660\",\n  \"K\\u2665\", \"K\\u2666\", \"K\\u2663\", \"K\\u2660\",\n  \"Q\\u2665\", \"Q\\u2666\", \"Q\\u2663\", \"Q\\u2660\",\n  \"A\\u2665\", \"A\\u2666\", \"A\\u2663\", \"A\\u2660\"]\n\ncards.sort(function() {return Math.random()-.5})\n\nvar svg = d3.select(\"div.output svg\")\n\nvar selection = svg.selectAll(\"text\")\n  .data(cards, String)\n\nselection\n  .transition()\n  .duration(1000)\n    .attr(\"y\", function(d,i) { return i*35+40 })\n\nselection.enter().append(\"text\")\n  .attr(\"x\", 30)\n  .attr(\"y\", function(d,i) { return i*35+40 })\n  .style(\"fill\", function(d) {\n      return \"\\u2665\\u2666\".indexOf(d[1]) < 0 ?\n        \"black\" : \"red\";\n    })\n  .style(\"font\", \"20px monospace\")\n  .text(String)");
 
