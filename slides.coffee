@@ -107,6 +107,7 @@ slide.code_title title = ".select()"
 slide.code title, rect1, """
 var svg = d3.select("div.output svg")
 
+
 var myRect = svg.select("rect")
 myRect.attr("width", 100)
 myRect.attr("height", 100)
@@ -116,12 +117,24 @@ myRect.style("fill", "steelblue")
 slide.code title, rect1, """
 var svg = d3.select("div.output svg")
 
+// Chain style
 svg.select("rect")
   .attr("width", 100)
   .attr("height", 100)
   .style("fill", "steelblue")
 """
 
+slide.code title, rect1, """
+var svg = d3.select("div.output svg")
+
+// Object map style
+svg.select("rect")
+  .attr({
+    width: 100,
+    height: 100
+  })
+  .style("fill", "steelblue")
+"""
 
 # -----------------------------------------------
 slide.code_title title = ".selectAll()"

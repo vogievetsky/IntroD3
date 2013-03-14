@@ -32,9 +32,11 @@
 
   slide.code_title(title = ".select()");
 
-  slide.code(title, rect1, "var svg = d3.select(\"div.output svg\")\n\nvar myRect = svg.select(\"rect\")\nmyRect.attr(\"width\", 100)\nmyRect.attr(\"height\", 100)\nmyRect.style(\"fill\", \"steelblue\")");
+  slide.code(title, rect1, "var svg = d3.select(\"div.output svg\")\n\n\nvar myRect = svg.select(\"rect\")\nmyRect.attr(\"width\", 100)\nmyRect.attr(\"height\", 100)\nmyRect.style(\"fill\", \"steelblue\")");
 
-  slide.code(title, rect1, "var svg = d3.select(\"div.output svg\")\n\nsvg.select(\"rect\")\n  .attr(\"width\", 100)\n  .attr(\"height\", 100)\n  .style(\"fill\", \"steelblue\")");
+  slide.code(title, rect1, "var svg = d3.select(\"div.output svg\")\n\n// Chain style\nsvg.select(\"rect\")\n  .attr(\"width\", 100)\n  .attr(\"height\", 100)\n  .style(\"fill\", \"steelblue\")");
+
+  slide.code(title, rect1, "var svg = d3.select(\"div.output svg\")\n\n// Object map style\nsvg.select(\"rect\")\n  .attr({\n    width: 100,\n    height: 100\n  })\n  .style(\"fill\", \"steelblue\")");
 
   slide.code_title(title = ".selectAll()");
 
