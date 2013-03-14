@@ -22,9 +22,11 @@
 
   slide.title("First, some JavaScript");
 
-  slide.code("JavaScript", null, "// In JS functions are first class citizens.\n// This is a very powerful concept!\nfunction sq1(x) {\n  return x * x\n}\n\nvar sq2 = function(x) {\n  return x * x\n}\n\nconsole.log(\"sq1(4) ==\", sq1(4)) // == 16\nconsole.log(\"sq2(4) ==\", sq2(4)) // == 16\n\nsq1.foo = 8\nsq2.bar = 3\n\nconsole.log(\"Wow dude:\", sq1(sq1.foo + sq2.bar))");
+  slide.code("JavaScript", null, "// In JS functions are first class citizens.\n// This is a very powerful concept!\nfunction sq1(x) {\n  return x * x\n}\n\nvar sq2 = function(x) {\n  return x * x\n}\n\nconsole.log(\"sq1(4) ==\", sq1(4)) // == 16\nconsole.log(\"sq2(4) ==\", sq2(4)) // == 16\n\nsq1.foo = 8\nsq2.bar = 3\n\nconsole.log(\"Trippy:\", sq1(sq1.foo + sq2.bar))");
 
-  slide.code("JavaScript", null, "// D3 has many helper methods\n// d3.scale.linear() returns a function that\n// will map the given domain to the given\n// range linearly.\nvar w = 640, h = 320\n\n// x is a function!\nvar x = d3.scale.linear()\n  .domain([-1, 1])\n  .range([0, w])\n\n// y is also a function!\nvar y = d3.scale.linear()\n  .domain([0, 1])\n  .range([0, h])\n\nconsole.log(\"x(0) ==\", x(0)) // == w/2\nconsole.log(\"y(3) ==\", y(3)) // == 3*h");
+  slide.code("JavaScript to the Max", null, "// Functions can be used to 'bake in' state\n\nvar formatter = function(prefix, fixed) {\n  if (prefix == null) { prefix = '' }\n  if (fixed == null) { fixed = 2 }\n  return function(number) {\n    return prefix + number.toFixed(fixed)\n  }\n}\n\nvar currency = formatter('$', 2)\nvar roughly = formatter('~ ', 1)\n\nconsole.log(\"currency(31/3) ==\", currency(31/3))\n\nconsole.log(\"roughly(31/3) ==\", roughly(31/3))");
+
+  slide.code("JavaScript to the Max", null, "// D3 has many helper methods\n// d3.scale.linear() returns a function that\n// will map the given domain to the given\n// range linearly.\nvar w = 640, h = 320\n\n// x is a function!\nvar x = d3.scale.linear()\n  .domain([-1, 1])\n  .range([0, w])\n\n// y is also a function!\nvar y = d3.scale.linear()\n  .domain([0, 1])\n  .range([0, h])\n\nconsole.log(\"x(0) ==\", x(0)) // == w/2\nconsole.log(\"y(3) ==\", y(3)) // == 3*h");
 
   slide.title("Core D3");
 

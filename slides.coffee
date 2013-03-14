@@ -56,10 +56,29 @@ console.log("sq2(4) ==", sq2(4)) // == 16
 sq1.foo = 8
 sq2.bar = 3
 
-console.log("Wow dude:", sq1(sq1.foo + sq2.bar))
+console.log("Trippy:", sq1(sq1.foo + sq2.bar))
 """
 
-slide.code "JavaScript", null, """
+slide.code "JavaScript to the Max", null, """
+// Functions can be used to 'bake in' state
+
+var formatter = function(prefix, fixed) {
+  if (prefix == null) { prefix = '' }
+  if (fixed == null) { fixed = 2 }
+  return function(number) {
+    return prefix + number.toFixed(fixed)
+  }
+}
+
+var currency = formatter('$', 2)
+var roughly = formatter('~ ', 1)
+
+console.log("currency(31/3) ==", currency(31/3))
+
+console.log("roughly(31/3) ==", roughly(31/3))
+"""
+
+slide.code "JavaScript to the Max", null, """
 // D3 has many helper methods
 // d3.scale.linear() returns a function that
 // will map the given domain to the given
