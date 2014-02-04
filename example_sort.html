@@ -2,16 +2,16 @@
 <html>
   <head>
     <title>Sorting</title>
-    <script type="text/javascript" src="d3/d3.js"></script>
+    <script type="text/javascript" src="d3/d3.v3.js"></script>
     <style type="text/css">
       body {
         padding: 100px;
       }
-      
+
       svg {
         border: 1px solid black;
       }
-      
+
       rect {
         fill: steelblue;
       }
@@ -26,27 +26,27 @@
     .append('svg:svg')
       .attr('width', 400)
       .attr('height', 400)
-      
-  
+
+
   var data = d3.range(20).map(Math.random)
-  
+
   svg.selectAll('rect').data(data)
     .enter().append('svg:rect')
       .attr('width', 10)
       .attr('height', function(d) { return d*400; })
       .attr('x', function(d, i) { return i * 20 + 5; })
       .attr('y', function(d) { return 400 - d*400; })
-    
+
   var go = function() {
     data.sort(function(a,b) { return a-b; })
-    
+
     svg.selectAll('rect')
       .data(data, function(d) { return d; })
         .transition()
         .duration(500)
         .delay(function(d, i) { return i * 50; })
           .attr('x', function(d, i) { return i * 20 + 5; })
-        
+
   }
 
   </script>
