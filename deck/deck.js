@@ -2,7 +2,7 @@
   "use strict";
   var m, n, slide;
   slide = null;
-  n = d3.selectAll('section')[0].length;
+  n = d3.selectAll('section').nodes().length;
 
   function update(newSlide) {
     newSlide = Math.min(Math.max(newSlide, 0), n - 1);

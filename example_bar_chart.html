@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <title>Introduction to D3</title>
-    <script type="text/javascript" src="d3/d3.v3.js"></script>
+    <script type="text/javascript" src="d3/d3.v4.js"></script>
     <script type="text/javascript" src="data/browsers.js"></script>
     <style type="text/css">
       body {
@@ -31,7 +31,7 @@
   }
 
   /* Convert the string dates to date objects */
-  var dateParse = d3.time.format("%B %Y").parse
+  var dateParse = d3.timeParse("%B %Y")
   stats.forEach(function(d) {
     d.month = dateParse(d.month)
     if (d.month == null) {
@@ -49,17 +49,17 @@
       .attr('width', width)
       .attr('height', height)
 
-  var sx = d3.time.scale()
+  var sx = d3.scaleTime()
     .range([10, width])
 
-  var sy = d3.scale.linear()
+  var sy = d3.scaleLinear()
     .domain([0, 1])
     .range([0, height])
 
   var windowSize = 10
   var windowPos = 0
 
-  labelFormat = d3.time.format("%b %y")
+  labelFormat = d3.timeFormat("%b %y")
 
   var render = function() {
     var data = stats.slice(windowPos, windowPos+windowSize)

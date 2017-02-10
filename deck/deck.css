@@ -16,7 +16,7 @@ section.code_slide div.codes div.button_bar{position:absolute;right:16px;bottom:
 section.code_slide div.out{position:absolute;right:10px;bottom:10px;left:517px;top:90px;border:1px solid #ccc;}section.code_slide div.out div.error{position:absolute;background:white;top:5px;left:5px;right:5px;color:red;border:2px solid red;z-index:100;padding:10px;font-size:16px;}
 section.code_slide div.out pre.log{position:absolute;background:white;top:5px;left:5px;right:5px;border:2px solid black;z-index:99;padding:10px;font-size:16px;text-align:left;}
 section .name,section .date{position:absolute;bottom:20px;color:#999;}
-section .name{left:20px;}
+section .name{left:20px;text-align:left;}
 section .date{right:20px;}
 section svg{width:100%;height:100%;}section svg rect{fill:#ccc;stroke:gray;stroke-width:2px;}
 section svg text{font:16px sans-serif;}

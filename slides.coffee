@@ -80,18 +80,21 @@ console.log("roughly(31/3) ==", roughly(31/3))
 
 slide.code "JavaScript to the Max", null, """
 // D3 has many helper methods
-// d3.scale.linear() returns a function that
+// d3.scaleLinear() returns a function that
 // will map the given domain to the given
 // range linearly.
+
+// D3 v4 change: d3.scaleLinear was 
+// d3.scale.linear in v3
 var w = 640, h = 320
 
 // x is a function!
-var x = d3.scale.linear()
+var x = d3.scaleLinear()
   .domain([-1, 1])
   .range([0, w])
 
 // y is also a function!
-var y = d3.scale.linear()
+var y = d3.scaleLinear()
   .domain([0, 1])
   .range([0, h])
 
@@ -128,8 +131,15 @@ slide.code title, rect1, """
 var svg = d3.select("div.output svg")
 
 // Object map style
+// NOT RECOMMENDED in D3 v4
+// IMPORTANT: this requires d3-selection-multi
+//   to be loaded as a separate plugin library;
+//   it is not part of the default bundle
+// https://d3js.org/d3-selection-multi.v1.min.js
+
+// D3 v4 change .attrs instead of .attr
 svg.select("rect")
-  .attr({
+  .attrs({
     width: 100,
     height: 100
   })
@@ -252,17 +262,16 @@ var selection = svg.selectAll("rect")
   .data([127, 61, 256, 71])
 
 // Shorter
+// D3 v4 change: in v3, selections
+// were mutable and enter changed selection
+// now, merge makes this explicit
 selection.enter().append("rect")
-
-// when updating the regular selection then
-// enter selection is joined in to the update
-// selection for convenience.
-selection
-  .attr("x", 0)
-  .attr("y", function(d,i) { return i*90+50 })
-  .attr("width", function(d,i) { return d; })
-  .attr("height", 20)
-  .style("fill", "steelblue")
+  .merge(selection)
+    .attr("x", 0)
+    .attr("y", function(d,i) { return i*90+50 })
+    .attr("width", function(d,i) { return d; })
+    .attr("height", 20)
+    .style("fill", "steelblue")
 """
 
 title += " // a common pattern"
@@ -339,27 +348,26 @@ var selection = svg.selectAll("rect")
   .data([127, 61, 256, 71])
 
 selection.enter().append("rect")
-  .attr("x", 200)
-  .attr("y", 200)
-  .attr("width", 10)
-  .attr("height", 10)
-  .style("fill", "red")
-
-selection
-  .transition()
-  .duration(3000)
-    .attr("x", 0)
-    .attr("y", function(d,i) { return i*90+50 })
-    .attr("width", function(d,i) { return d; })
-    .attr("height", 20)
-    .style("fill", "steelblue")
+    .attr("x", 200)
+    .attr("y", 200)
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "red")
+  .merge(selection)
     .transition()
     .duration(3000)
-    .delay(3000)
-      .style("fill", "green")
-      .attr("width", function(d,i) {
-          return d*1.5;
-        })
+      .attr("x", 0)
+      .attr("y", function(d,i) { return i*90+50 })
+      .attr("width", function(d,i) { return d; })
+      .attr("height", 20)
+      .style("fill", "steelblue")
+      .transition()
+      .duration(3000)
+      .delay(3000)
+        .style("fill", "green")
+        .attr("width", function(d,i) {
+            return d*1.5;
+          })
 
 selection.exit()
   .attr("opacity", 1)
@@ -404,20 +412,19 @@ var selection = svg.selectAll("rect")
   .data([61, 256, 71]) // <- incomplete?
 
 selection.enter().append("rect")
-  .attr("x", 0)
-  .attr("y", function(d,i) { return i*90+50 })
-  .attr("width", function(d,i) { return d; })
-  .attr("height", 20)
-  .style("fill", "steelblue")
-
-selection
-  .transition()
-  .duration(3000)
     .attr("x", 0)
     .attr("y", function(d,i) { return i*90+50 })
     .attr("width", function(d,i) { return d; })
     .attr("height", 20)
     .style("fill", "steelblue")
+  .merge(selection)
+    .transition()
+    .duration(3000)
+      .attr("x", 0)
+      .attr("y", function(d,i) { return i*90+50 })
+      .attr("width", function(d,i) { return d; })
+      .attr("height", 20)
+      .style("fill", "steelblue")
 
 selection.exit()
   .remove()
@@ -429,24 +436,23 @@ slide.code title, init_svg, """
 var svg = d3.select("div.output svg")
 
 var selection = svg.selectAll("rect")
-  .data([61, 256, 71], String)
+  .data([61, 256, 71], function(d) { return d; })
 
 selection.enter().append("rect")
-  .attr("x", 0)
-  .attr("y", function(d,i) {
-      return (i+1)*90+50
-    })
-  .attr("width", function(d,i) { return d; })
-  .attr("height", 20)
-  .style("fill", "steelblue")
-  .style("opacity", 0)
-
-selection
-  .transition()
-  .duration(3000)
-    .attr("y", function(d,i) { return i*90+50 })
+    .attr("x", 0)
+    .attr("y", function(d,i) {
+        return (i+1)*90+50
+      })
+    .attr("width", function(d,i) { return d; })
     .attr("height", 20)
-    .style("opacity", 1)
+    .style("fill", "steelblue")
+    .style("opacity", 0)
+  .merge(selection)
+    .transition()
+    .duration(3000)
+      .attr("y", function(d,i) { return i*90+50 })
+      .attr("height", 20)
+      .style("opacity", 1)
 
 selection.exit()
   .transition()
@@ -473,20 +479,20 @@ var svg = d3.select("div.output svg")
 // First selection (within svg)
 
 var selA = svg.selectAll("g").data(myData)
-selA.enter().append("g")
-selA.attr("transform", function(d,i) {
-  return 'translate(70,' + (i*100+50) + ')'
-})
+var merged = selA.enter().append("g")
+  .merge(selA)
+    .attr("transform", function(d,i) {
+      return 'translate(70,' + (i*100+50) + ')' })
 selA.exit().remove()
 
 // Second selection (within first selection)
 
-var selB = selA.selectAll('circle')
+var selB = merged.selectAll('circle')
   .data(function(d) { return d })
 selB.enter().append('circle')
-selB
-  .attr("cx", function(d,i) { return i*80 })
-  .attr("r", function(d,i) { return d })
+  .merge(selB)
+    .attr("cx", function(d,i) { return i*80 })
+    .attr("r", function(d,i) { return d })
 selB.exit().remove()
 """
 
@@ -577,10 +583,13 @@ var points = [
   { x: 400, y: 150 }
 ]
 
-var lineFn = d3.svg.line()
+// D3 v4 change: d3.line was d3.svg.line in v3
+var lineFn = d3.line()
   .x(function(d) { return d.x })
   .y(function(d) { return d.y })
-  //.interpolate("cardinal")
+  // D3 v4 change: .curve(d3.curveCardinal) was
+  // .interpolate("cardinal") in v3
+  //.curve(d3.curveCardinal)
 
 var svg = d3.select("div.output svg")
 
@@ -602,12 +611,12 @@ var pointsCos = d3.range(21).map(function(i) {
 
 var w = 480
 var h = 300
-var x = d3.scale.linear()
+var x = d3.scaleLinear()
           .domain([0, 20]).range([0, w])
-var y = d3.scale.linear()
+var y = d3.scaleLinear()
           .domain([-1, 1]).range([h, 0])
 
-var lineFn = d3.svg.line()
+var lineFn = d3.line()
   .x(function(d) { return x(d.x) })
   .y(function(d) { return y(d.y) })
 
