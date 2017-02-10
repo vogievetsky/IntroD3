@@ -6,3 +6,7 @@ Questions, comments, contributions, feedback, etc.
 // base64 email for fun.
 sendEmailTo(atob("dmFkaW1Ab2dpZXZldHNreS5jb20="))
 ```
+
+## License
+
+MIT © [Vadim Ogievetsky](http://vadim.ogievetsky.com)
