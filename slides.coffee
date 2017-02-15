@@ -362,8 +362,9 @@ selection.enter().append("rect")
       .attr("height", 20)
       .style("fill", "steelblue")
       .transition()
+      // D3 v4 change: delays relative
+      //  to previous transition (none needed)
       .duration(3000)
-      .delay(3000)
         .style("fill", "green")
         .attr("width", function(d,i) {
             return d*1.5;
@@ -546,9 +547,9 @@ var selection = svg.selectAll("text")
 selection
   .transition().duration(500)
   .attr("x", function(d,i) {return (i%8)*30+30})
-  .transition().duration(500).delay(500)
+  .transition().duration(500)
   .attr("y", function(d,i) { return i*35+40 })
-  .transition().duration(500).delay(1000)
+  .transition().duration(500)
   .attr("x", 30)
 
 selection.enter().append("text")
